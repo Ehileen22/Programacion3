@@ -45,7 +45,8 @@ public class Ventana extends JFrame{
 	{
 		//this.login();
 		//this.registro();
-		this.admin();
+		//this.admin();
+		this.calculadora();
 			
 		this.repaint();
 		this.validate();
@@ -340,5 +341,226 @@ public class Ventana extends JFrame{
 		
 		
 		this.add(adminPanel);
+	}
+	
+	public void calculadora()
+	{
+		//panel
+		this.setSize(504, 580);
+		this.setResizable(false);
+		this.setTitle("Calculadora");
+		
+		JPanel calculadora= new JPanel();
+		calculadora.setSize(this.getWidth(),this.getHeight());
+		calculadora.setLocation(0,0);
+		calculadora.setBackground(Color.BLACK);
+		calculadora.setLayout(null);
+		
+		JLabel resultado=new JLabel("180.0", 0);
+		resultado.setBounds(12,10,464, 60);
+		resultado.setFont(new Font("Courier new",Font.BOLD ,17));
+		resultado.setForeground(Color.BLACK);
+		resultado.setOpaque(true);
+		resultado.setBackground(Color.WHITE);
+		calculadora.add(resultado);
+		
+		JButton ce= new JButton("CE");
+		ce.setBounds(12,80 ,110,80);
+		ce.setFont(new Font("Courier new",Font.BOLD ,17));
+		ce.setForeground(Color.WHITE);
+		ce.setBackground(new Color(80, 80, 80));
+		ce.setOpaque(true);
+		ce.setBorderPainted(true);
+		ce.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(ce);
+		
+		JButton b1= new JButton();
+		b1.setBounds(130,80 ,110,80);
+		b1.setBackground(new Color(80, 80, 80 ));
+		b1.setOpaque(true);
+		b1.setBorderPainted(true);
+		b1.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(b1);
+		
+		JButton b2= new JButton();
+		b2.setBounds(248,80 ,110,80);
+		b2.setBackground(new Color(80, 80, 80 ));
+		b2.setOpaque(true);
+		b2.setBorderPainted(true);
+		b2.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(b2);
+		
+		JButton b3= new JButton();
+		b3.setBounds(366,80 ,110,80);
+		b3.setBackground(new Color(80, 80, 80 ));
+		b3.setOpaque(true);
+		b3.setBorderPainted(true);
+		b3.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(b3);
+		
+		JButton button7= new JButton("7");
+		button7.setBounds(12,170 ,110,80);
+		button7.setFont(new Font("Courier new",Font.BOLD ,17));
+		button7.setForeground(Color.WHITE);
+		button7.setBackground(new Color(80, 80, 80));
+		button7.setOpaque(true);
+		button7.setBorderPainted(true);
+		button7.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button7);
+		
+		JButton button8= new JButton("8");
+		button8.setBounds(130,170 ,110,80);
+		button8.setFont(new Font("Courier new",Font.BOLD ,17));
+		button8.setForeground(Color.WHITE);
+		button8.setBackground(new Color(80, 80, 80 ));
+		button8.setOpaque(true);
+		button8.setBorderPainted(true);
+		button8.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button8);
+		
+		JButton button9= new JButton("9");
+		button9.setBounds(248,170 ,110,80);
+		button9.setBackground(new Color(80, 80, 80 ));
+		button9.setFont(new Font("Courier new",Font.BOLD ,17));
+		button9.setForeground(Color.WHITE);
+		button9.setOpaque(true);
+		button9.setBorderPainted(true);
+		button9.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button9);
+		
+		JButton slash= new JButton("/");
+		slash.setBounds(366,170 ,110,80);
+		slash.setBackground(new Color(80, 80, 80 ));
+		slash.setFont(new Font("Courier new",Font.BOLD ,17));
+		slash.setForeground(Color.WHITE);
+		slash.setOpaque(true);
+		slash.setBorderPainted(true);
+		slash.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(slash);
+		
+		JButton button4= new JButton("4");
+		button4.setBounds(12,260 ,110,80);
+		button4.setFont(new Font("Courier new",Font.BOLD ,17));
+		button4.setForeground(Color.WHITE);
+		button4.setBackground(new Color(80, 80, 80));
+		button4.setOpaque(true);
+		button4.setBorderPainted(true);
+		button4.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button4);
+		
+		JButton button5= new JButton("5");
+		button5.setBounds(130,260 ,110,80);
+		button5.setFont(new Font("Courier new",Font.BOLD ,17));
+		button5.setForeground(Color.WHITE);
+		button5.setBackground(new Color(80, 80, 80 ));
+		button5.setOpaque(true);
+		button5.setBorderPainted(true);
+		button5.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button5);
+		
+		JButton button6= new JButton("6");
+		button6.setBounds(248,260 ,110,80);
+		button6.setBackground(new Color(80, 80, 80 ));
+		button6.setFont(new Font("Courier new",Font.BOLD ,17));
+		button6.setForeground(Color.WHITE);
+		button6.setOpaque(true);
+		button6.setBorderPainted(true);
+		button6.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button6);
+		
+		JButton asterisk= new JButton("*");
+		asterisk.setBounds(366,260 ,110,80);
+		asterisk.setBackground(new Color(80, 80, 80 ));
+		asterisk.setFont(new Font("Courier new",Font.BOLD ,17));
+		asterisk.setForeground(Color.WHITE);
+		asterisk.setOpaque(true);
+		asterisk.setBorderPainted(true);
+		asterisk.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(asterisk);
+		
+		JButton button1= new JButton("1");
+		button1.setBounds(12,350 ,110,80);
+		button1.setFont(new Font("Courier new",Font.BOLD ,17));
+		button1.setForeground(Color.WHITE);
+		button1.setBackground(new Color(80, 80, 80));
+		button1.setOpaque(true);
+		button1.setBorderPainted(true);
+		button1.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button1);
+		
+		JButton button2= new JButton("2");
+		button2.setBounds(130,350 ,110,80);
+		button2.setFont(new Font("Courier new",Font.BOLD ,17));
+		button2.setForeground(Color.WHITE);
+		button2.setBackground(new Color(80, 80, 80 ));
+		button2.setOpaque(true);
+		button2.setBorderPainted(true);
+		button2.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button2);
+		
+		JButton button3= new JButton("3");
+		button3.setBounds(248,350 ,110,80);
+		button3.setBackground(new Color(80, 80, 80 ));
+		button3.setFont(new Font("Courier new",Font.BOLD ,17));
+		button3.setForeground(Color.WHITE);
+		button3.setOpaque(true);
+		button3.setBorderPainted(true);
+		button3.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button3);
+		
+		JButton hyphen= new JButton("-");
+		hyphen.setBounds(366,350 ,110,80);
+		hyphen.setBackground(new Color(80, 80, 80 ));
+		hyphen.setFont(new Font("Courier new",Font.BOLD ,17));
+		hyphen.setForeground(Color.WHITE);
+		hyphen.setOpaque(true);
+		hyphen.setBorderPainted(true);
+		hyphen.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(hyphen);
+		
+		JButton button0= new JButton("0");
+		button0.setBounds(12,440 ,110,80);
+		button0.setFont(new Font("Courier new",Font.BOLD ,17));
+		button0.setForeground(Color.WHITE);
+		button0.setBackground(new Color(80, 80, 80));
+		button0.setOpaque(true);
+		button0.setBorderPainted(true);
+		button0.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(button0);
+		
+		JButton dot= new JButton(".");
+		dot.setBounds(130,440 ,110,80);
+		dot.setFont(new Font("Courier new",Font.BOLD ,17));
+		dot.setForeground(Color.WHITE);
+		dot.setBackground(new Color(80, 80, 80 ));
+		dot.setOpaque(true);
+		dot.setBorderPainted(true);
+		dot.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(dot);
+		
+		JButton equals= new JButton("=");
+		equals.setBounds(248,440 ,110,80);
+		equals.setBackground(new Color(80, 80, 80 ));
+		equals.setFont(new Font("Courier new",Font.BOLD ,17));
+		equals.setForeground(Color.WHITE);
+		equals.setOpaque(true);
+		equals.setBorderPainted(true);
+		equals.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(equals);
+		
+		JButton plus= new JButton("+");
+		plus.setBounds(366,440 ,110,80);
+		plus.setBackground(new Color(80, 80, 80 ));
+		plus.setFont(new Font("Courier new",Font.BOLD ,17));
+		plus.setForeground(Color.WHITE);
+		plus.setOpaque(true);
+		plus.setBorderPainted(true);
+		plus.setBorder(BorderFactory.createLineBorder(new Color(4, 113, 116), 2));
+		calculadora.add(plus);
+
+		
+		
+		this.add(calculadora);
+
 	}
 }
