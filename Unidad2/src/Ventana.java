@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,7 +51,8 @@ public class Ventana extends JFrame{
 		//this.registro();
 		//this.admin();
 		//this.calculadora();
-		this.account();			
+		//this.account();
+		this.calcu2();
 		this.repaint();
 		this.validate();
 			
@@ -664,6 +668,63 @@ public class Ventana extends JFrame{
 		account.add(color);
 		this.add(account);
 		
+	}
+	
+	public void calcu2()
+	{
+		this.setSize(500, 650);
+		
+		JPanel panel= new JPanel();
+		panel.setSize(482,620);
+		panel.setBackground(new Color(240, 159, 159 ));
+		panel.setLayout(new BorderLayout());
+		
+		JLabel text= new JLabel("100.00", 4);
+		text.setOpaque(true);
+		text.setBackground(Color.WHITE);
+		text.setFont(new Font("Marker felt",Font.BOLD ,30));
+		panel.add(text, BorderLayout.NORTH);
+		
+		JPanel centro= new JPanel();
+		centro.setBackground(new Color(255, 129, 129));
+		centro.setLayout(new GridLayout(4,3,3,3));
+		panel.add(centro,BorderLayout.CENTER);
+		
+		String btns[]= {"7","8","9","6","5","4","3","2","1","0",".","/"};
+		for(int i=0; i<12; i++)
+		{
+			JButton boton= new JButton(btns[i]);
+			boton.setBackground(Color.white);
+			centro.add(boton);
+		}
+		
+		JPanel east= new JPanel();
+		east.setBackground(new Color(249, 62, 62));
+		east.setLayout(new GridLayout(3,1,3,3));
+		panel.add(east,BorderLayout.EAST);
+		
+		String btns2[]= {"+","-","="};
+		for(int i=0; i<3; i++)
+		{
+			JButton boton2= new JButton(btns2[i]);
+			boton2.setBackground(Color.white);
+			east.add(boton2);
+		}
+		
+		JPanel west= new JPanel();
+		west.setBackground(Color.RED);
+		west.setLayout(new BoxLayout(west,BoxLayout.Y_AXIS));
+		panel.add(west, BorderLayout.WEST);
+		
+		String btns3[]= {"MC","M+","  *  "};
+		for(int i=0; i<3; i++)
+		{
+			JButton boton3= new JButton(btns3[i]);
+			
+			boton3.setBackground(Color.white);
+			west.add(boton3);
+		}
+		this.add(panel);
 	}
 
 }
