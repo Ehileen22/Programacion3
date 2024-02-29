@@ -52,7 +52,8 @@ public class Ventana extends JFrame{
 		//this.admin();
 		//this.calculadora();
 		//this.account();
-		this.calcu2();
+		//this.calcu2();
+		this.interes();
 		this.repaint();
 		this.validate();
 			
@@ -727,4 +728,152 @@ public class Ventana extends JFrame{
 		this.add(panel);
 	}
 
+	public void interes(){
+		this.setSize(530, 600);
+		this.setResizable(false);
+		this.setTitle("Calculando el interés");
+		
+		JPanel interes= new JPanel();
+		interes.setSize(500,550);
+		interes.setBackground(Color.white);
+		interes.setLayout(new BorderLayout());
+		
+		
+		JLabel title=new JLabel("    Interés",2);
+		title.setFont(new Font("Georgia",Font.BOLD ,30));
+		title.setForeground(Color.red);
+		title.setOpaque(false);
+		interes.add(title, BorderLayout.NORTH);
+		
+		
+		JLabel verde=new JLabel();
+		verde.setPreferredSize(new Dimension(200,200));
+		verde.setBackground(new Color(164, 245, 149));
+		verde.setOpaque(true);
+		verde.setBorder(BorderFactory.createLineBorder(Color.WHITE,20));
+		interes.add(verde, BorderLayout.CENTER);
+		
+		
+
+		//1
+		JLabel text= new JLabel("Calcular Interés", 2);
+		text.setBounds(23, 23, 170, 35);
+		text.setOpaque(false);
+		text.setFont(new Font("Marker felt",Font.BOLD ,15));
+		verde.add(text);
+
+		
+		//2
+		JLabel capital= new JLabel("Capital:",0);
+		capital.setBounds(10, 80, 150, 35);
+		capital.setOpaque(false);
+		capital.setFont(new Font("Marker felt",Font.BOLD ,15));
+		verde.add(capital);
+		//3
+		JTextField capitalText= new JTextField("1500");	
+		capitalText.setBounds(155, 80, 295, 35);
+		capitalText.setOpaque(true);
+		capitalText.setFont(new Font("Marker felt",Font.BOLD ,15));
+		verde.add(capitalText);
+		//4
+		JLabel tiempo= new JLabel("  Tiempo: ",0);	
+		tiempo.setBounds(10, 145, 150, 35);
+		tiempo.setOpaque(false);
+		tiempo.setFont(new Font("Marker felt",Font.BOLD ,15));
+		verde.add(tiempo);
+		//5
+		JTextField tiempoText= new JTextField("2  ");
+		tiempoText.setBounds(155, 150, 295, 35);
+		tiempoText.setOpaque(true);
+		tiempoText.setBackground(Color.WHITE);
+		tiempoText.setFont(new Font("Marker felt",Font.BOLD ,15));
+		verde.add(tiempoText);
+		//6
+		JLabel tasaInteres= new JLabel("Tasa Interés: ",0);
+		tasaInteres.setBounds(-45, 220, 300, 35);
+		tasaInteres.setOpaque(false);
+		tasaInteres.setFont(new Font("Marker felt",Font.BOLD ,14));
+		verde.add(tasaInteres);
+		//7
+		JTextField tasaText= new JTextField("0.1");	
+		tasaText.setBounds(155, 220, 295, 35);
+		tasaText.setOpaque(true);
+		tasaText.setBackground(Color.WHITE);
+		tasaText.setFont(new Font("Marker felt",Font.BOLD ,15));
+		verde.add(tasaText);
+		
+		
+		
+		//8
+		JButton calcular= new JButton("   Calcular");
+		calcular.setFont(new Font("Georgia",Font.PLAIN ,15));
+		calcular.setBounds(100, 290, 120, 35);
+		calcular.setForeground(Color.white);
+		calcular.setBackground(Color.black);
+		calcular.setOpaque(true);
+		calcular.setBorderPainted(true);
+		calcular.setBorder(BorderFactory.createLineBorder(Color.WHITE,3));
+		verde.add(calcular);
+		//9
+		JButton cancelar= new JButton("   Cancelar");
+		cancelar.setFont(new Font("Georgia",Font.PLAIN ,15));
+		cancelar.setBounds(280, 290, 120, 35);
+		cancelar.setForeground(Color.white);
+		cancelar.setBackground(Color.black);
+		cancelar.setOpaque(true);
+		cancelar.setBorderPainted(true);
+		cancelar.setBorder(BorderFactory.createLineBorder(Color.WHITE,3));
+		verde.add(cancelar);
+		
+		JLabel guar=new JLabel();
+		guar.setIcon(new ImageIcon(getClass().getResource("guardar.png")));
+		guar.setBounds(175, 180, 30, 30);
+		calcular.add(guar);
+		
+		JLabel cancel=new JLabel();
+		cancel.setIcon(new ImageIcon(getClass().getResource("cancel.png")));
+		cancel.setBounds(175, 295, 30, 30);
+		cancelar.add(cancel);
+		
+		JLabel rosa=new JLabel();
+		rosa.setPreferredSize(new Dimension(150,150));
+		rosa.setBackground(new Color(245, 162, 149));
+		rosa.setOpaque(true);
+		rosa.setBorder(BorderFactory.createLineBorder(Color.WHITE,20));
+		interes.add(rosa, BorderLayout.SOUTH);
+		
+
+		JLabel inte= new JLabel("Interés:",0);		
+		inte.setBounds(10, 35, 150, 35);
+		inte.setOpaque(false);
+		inte.setFont(new Font("Marker felt",Font.BOLD ,15));
+		rosa.add(inte);
+		//14
+		JTextField inteText= new JTextField("138.2930000");	
+		inteText.setBounds(145, 35, 300, 35);
+		inteText.setOpaque(true);
+		inteText.setFont(new Font("Marker felt",Font.BOLD ,15));
+		rosa.add(inteText);
+		//15
+		JLabel monto= new JLabel("Monto: ",0);
+		monto.setBounds(10,80, 150, 35);
+		monto.setOpaque(false);
+		monto.setBackground(new Color(245, 162, 149));
+		monto.setFont(new Font("Marker felt",Font.BOLD ,15));
+		rosa.add(monto);
+		//16
+		JTextField montoText= new JTextField("1284.2930000");
+		montoText.setBounds(145, 80, 300, 35);
+		montoText.setOpaque(true);
+		montoText.setFont(new Font("Marker felt",Font.BOLD ,15));
+		rosa.add(montoText);
+	
+		
+
+		
+		this.add(interes);
+
+
+		
+	}
 }
