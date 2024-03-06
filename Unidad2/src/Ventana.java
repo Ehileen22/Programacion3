@@ -884,11 +884,143 @@ public class Ventana extends JFrame{
 	
 	public void paint(Graphics create)
 	{
+		//this.setSize(1000, 700);
 		super.paint(create);
 		
 		Graphics2D g2d= (Graphics2D)create;
+		
+		g2d.setColor(new Color(149, 245, 226 ));
+		
+		g2d.fillRect(0,0,this.getWidth(),this.getHeight());
+		
+		g2d.setColor(new Color(149, 245, 226 ));
+		g2d.fillRect(50,50,200,100);
+		
+		//cafe
+		g2d.setColor(new Color(126, 55, 28 ));
+		//x,y,ancho, largo
+		g2d.fillRect(0,660,1000,40);
+		
+		//claro
+		g2d.setColor(new Color(216, 163, 76 ));
+		g2d.fillRect(0,620,1000,40);
+		
+		//Verde
+		g2d.setColor(new Color(112, 216, 76));
+		g2d.fillRect(0,580,1000,40);
+		
+		//Verde fuerte
+		g2d.setColor(new Color(36, 121, 7));
+		g2d.fillRect(0,560,1000,25);
+		
+		//Casa
+		//Madera rectangular
+		g2d.setColor(new Color(223, 180, 73));
+		g2d.fillRect(0,430,1000,50);
+		
+		//Maderas en vertical
+		g2d.setColor(new Color(254, 206, 86));
+		
+		int xPoints[]= {10,40,70,70,10};
+		int yPoints[]= {350,300,350,560,560};
+		g2d.fillPolygon(xPoints, yPoints, 5);
+		
+		int xPoints2[]= {100,130,160,160,100};
+		int yPoints2[]= {350,300,350,560,560};
+		g2d.fillPolygon(xPoints2, yPoints2, 5);
+		
+		int xPoints3[]= {190,220,250,250,190};
+		int yPoints3[]= {350,300,350,560,560};
+		g2d.fillPolygon(xPoints3, yPoints3, 5);
+		
+		
+		int xPoints4[]= {930,960,990,990,930};
+		int yPoints4[]= {350,300,350,560,560};
+		g2d.fillPolygon(xPoints4, yPoints4, 5);
+		
+		int xPoints5[]= {840,870,900,900,840};
+		int yPoints5[]= {350,300,350,560,560};
+		g2d.fillPolygon(xPoints5, yPoints5, 5);
+		
+		int xPoints6[]= {750,780,810,810,750};
+		int yPoints6[]= {350,300,350,560,560};
+		g2d.fillPolygon(xPoints6, yPoints6, 5);
+		
+		
+		//Casa
+		g2d.setColor(new Color(250, 218, 165 ));
+		g2d.fillRect(270,240,460,320);
+		
+		//Sombra de la casa
+		g2d.setColor(new Color(222, 189, 133 ));
+		int xPoints7[]= {270,730,730};
+		int yPoints7[]= {240,240,330};
+		g2d.fillPolygon(xPoints7, yPoints7, 3);
+		
+		//Sombra de la ventana
+		g2d.setColor(new Color(222, 189, 133));
+		int xPoints10[]= {570,730,730};
+		int yPoints10[]= {420,450,420};
+		g2d.fillPolygon(xPoints10, yPoints10, 3);
+		
+		
+		g2d.setColor(new Color(147, 101, 25));
+		g2d.setStroke(new BasicStroke(5));
+		g2d.drawLine(272,292,727,292);
+		
+		g2d.drawLine(272,332,727,332);
+		
+		g2d.drawLine(272,372,727,372);
+		
+		g2d.drawLine(272,412,727,412);
+		
+		g2d.drawLine(272,452,727,452);
+		
+		g2d.drawLine(272,492,727,492);
+		
+		g2d.drawLine(272,532,727,532);
+		
+		g2d.setColor(new Color(85, 53, 0 ));
+		g2d.fillRect(300,300,135,232);
+		
+		g2d.setColor(new Color(192, 133, 35));
+		g2d.fillRect(310,310,115,217);
+		
+		g2d.setColor(Color.white);
+		g2d.fillOval(400, 415, 20, 20);
+		
+		
+		g2d.setColor(new Color(198, 37, 21));
+		g2d.fillRect(570,300,120,120);
+		
+		g2d.setColor(Color.white);
+		g2d.fillRect(580,310,100,100);
+		
+		g2d.setColor(Color.gray);
+		g2d.fillRect(560,420,140,8);
+		
+		g2d.setColor(new Color(198, 37, 21));
+		g2d.drawLine(630,305,630,410);
+		g2d.drawLine(580,360,685,360);
+		
+		g2d.setColor(Color.gray);
+		g2d.fillRect(250,535,500,25);
+		g2d.fillRect(630,120,70,130);
+		
+		g2d.setColor(new Color(84, 85, 93));
+		g2d.fillRect(615,90,100,30);
+		
+		g2d.setColor(new Color(117, 0, 0 ));
+		int xPoints8[]= {240,400,750};
+		int yPoints8[]= {250,40,250};
+		g2d.fillPolygon(xPoints8, yPoints8, 3);
+		
+		g2d.setColor(new Color(55, 59, 61));
+		int xPoints9[]= {630,700,700};
+		int yPoints9[]= {120,140,120};
+		g2d.fillPolygon(xPoints9, yPoints9, 3);
 		//Asigna el color
-		g2d.setColor(Color.blue);
+		/*g2d.setColor(Color.blue);
 		//Fill
 		g2d.fillRect(50,50,200,100);
 		//Clear
@@ -926,7 +1058,8 @@ public class Ventana extends JFrame{
 			g2d.drawImage(image,650,80,null);
 		}catch(IOException e) {
 			e.printStackTrace();
-		}
+		}*/
+		
 		
 		
 		
