@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -53,8 +55,8 @@ public class Ventana extends JFrame{
 	}
 	public void iniciarComponentes()
 	{
-		//this.login();
-		//this.registro();
+		this.login();
+		this.registro();
 		//this.admin();
 		//this.calculadora();
 		//this.account();
@@ -81,10 +83,10 @@ public class Ventana extends JFrame{
 		login.add(loginTitle);
 		
 		
-		JLabel logo=new JLabel();
+		/*JLabel logo=new JLabel();
 		logo.setIcon(new ImageIcon(getClass().getResource("sun.png")));
 		logo.setBounds(100, 50, 256, 256);
-		login.add(logo);
+		login.add(logo);*/
 		
 		JLabel userName = new JLabel("NOMBRE DE USUARIO");
 		userName.setBounds(100, 125, 300, 35);
@@ -110,7 +112,7 @@ public class Ventana extends JFrame{
 		remember.setOpaque(false);
 		login.add(remember);
 		
-	
+		
 		JLabel forgot = new JLabel("¿Olvidó su contraseña?");
 		forgot.setBounds(265, 310, 180, 20);
 		login.add(forgot);
@@ -122,6 +124,56 @@ public class Ventana extends JFrame{
 		access.setOpaque(true);
 		access.setBorderPainted(true);
 		access.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+		
+		access.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Hola");
+				String usr=userResponse.getText();
+				String pwd=new String(pwdResponse.getPassword());
+				
+				
+					
+						if(usr.length()<=0)
+						{
+							System.out.println("No ha ingresado su usuario");
+							userResponse.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+							
+			
+						}
+						else
+						{
+							userResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+						}
+						if(pwd.length()<=0)
+						{
+							System.out.println("No ha ingresado su contraseña");
+							pwdResponse.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+							
+						}
+						else
+						{
+							pwdResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+						}
+						
+						
+						if(usr.equals("SuperUser")&&pwd.equals("SuperPass"))
+						{
+							System.out.println("Bienvenido");	
+						}
+						else
+						{
+							System.out.println("No se ha encontrado el usuario");
+						}
+					
+				
+				//System.out.println(userResponse.getText());
+				//System.out.println(pwdResponse.getPassword());
+				
+			}});
+		
+		
 		login.add(access);
 		
 		
@@ -139,6 +191,7 @@ public class Ventana extends JFrame{
 	
 	public void registro()
 	{
+		
 		JPanel registro= new JPanel();
 		registro.setSize(this.getWidth()/2,this.getHeight());
 		registro.setLocation(500, 0);
@@ -212,7 +265,7 @@ public class Ventana extends JFrame{
 		itemBox3.setBorder(BorderFactory.createLineBorder(new Color(91, 19, 3 ), 2));
 		registro.add(itemBox3);
 		
-		JLabel terms = new JLabel("Terminos", 0);
+		JLabel terms = new JLabel("TERMINOS", 0);
 		terms.setBounds(100, 390, 300, 35);
 		terms.setFont(new Font("Courier new",Font.BOLD ,25));
 		terms.setOpaque(true);
@@ -251,6 +304,62 @@ public class Ventana extends JFrame{
 		crear.setBorderPainted(true);
 		crear.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
 		registro.add( crear);
+		crear.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String usr=userResponse.getText();
+				String bio=bioText.getText();
+				if(usr.length()<=0) {
+					userResponse.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+					
+				}
+				else
+				{
+					userResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+				}
+				if(bio.length()<=0)
+				{
+					bioText.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+				}
+				else
+				{
+					bioText.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+				}
+				if(!itemBox1.isSelected()||!itemBox1.isSelected()||!itemBox1.isSelected())	
+				{
+					itemBox1.setBorderPainted(true);
+					itemBox1.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+					itemBox2.setBorderPainted(true);
+					itemBox2.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+					itemBox3.setBorderPainted(true);
+					itemBox3.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+					
+				}
+				else{
+					itemBox1.setBorderPainted(true);
+					itemBox1.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+					itemBox2.setBorderPainted(true);
+					itemBox2.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+					itemBox3.setBorderPainted(true);
+					itemBox3.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+					
+				}
+				if(!acceptRadio.isSelected())	
+				{
+					acceptRadio.setBorderPainted(true);
+					acceptRadio.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+				}
+				else{
+					acceptRadio.setBorderPainted(true);
+					acceptRadio.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+				}
+				//acceptRadio
+				
+				
+				
+			}});
 		this.add(registro);
 	}
 
@@ -882,7 +991,7 @@ public class Ventana extends JFrame{
 
 	}
 	
-	public void paint(Graphics create)
+	/*public void paint(Graphics create)
 	{
 		
 		this.setSize(935, 700);
@@ -1760,12 +1869,12 @@ public class Ventana extends JFrame{
 			g2d.drawImage(image,650,80,null);
 		}catch(IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 		
 		
 		
 		
 				
 		
-	}
+	}*/
 }
