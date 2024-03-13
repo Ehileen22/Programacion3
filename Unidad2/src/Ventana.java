@@ -7,9 +7,12 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -24,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -34,7 +38,7 @@ import javax.swing.JTextField;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-public class Ventana extends JFrame{
+public class Ventana extends JFrame implements MouseListener{
 
 	public Ventana()
 	{
@@ -55,16 +59,18 @@ public class Ventana extends JFrame{
 	}
 	public void iniciarComponentes()
 	{
-		this.login();
-		this.registro();
+		//this.login();
+		//this.registro();
 		//this.admin();
 		//this.calculadora();
 		//this.account();
 		//this.calcu2();	
 		//this.interes();
 		//this.paint(getGraphics());
+		this.botones();
 		this.repaint();
 		this.validate();
+		addMouseListener(this);
 			
 	}
 	public void login() {
@@ -327,7 +333,7 @@ public class Ventana extends JFrame{
 				{
 					bioText.setBorder(BorderFactory.createLineBorder(Color.green, 2));
 				}
-				if(!itemBox1.isSelected()||!itemBox1.isSelected()||!itemBox1.isSelected())	
+				if(!itemBox1.isSelected()&&!itemBox1.isSelected()&&!itemBox1.isSelected())	
 				{
 					itemBox1.setBorderPainted(true);
 					itemBox1.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
@@ -991,6 +997,61 @@ public class Ventana extends JFrame{
 
 	}
 	
+	public void botones()
+	{
+		this.setSize(500, 700);
+		JPanel btnPanel= new JPanel();
+		btnPanel.setSize(this.getWidth(),this.getHeight());
+		btnPanel.setBackground(Color.GRAY);
+		btnPanel.setLayout(null);
+		
+		JButton superBoton=new JButton("Clic");
+		superBoton.setBounds(140, 565, 200, 50);
+		superBoton.setFont(new Font("Courier new",Font.BOLD ,25));
+		superBoton.setBackground(new Color(252, 141, 118));
+		superBoton.setOpaque(true);
+		superBoton.setBorderPainted(true);
+		superBoton.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+		btnPanel.add(superBoton);
+		superBoton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("Hola");
+				
+				int x=(int) Math.floor(Math.random()*450+1);
+				int y=(int) Math.floor(Math.random()*620+1);
+				
+				int w=(int) Math.floor(Math.random()*120+1);
+				int h=(int) Math.floor(Math.random()*120+1);
+				
+				Random rand= new Random();
+				float r=rand.nextFloat();
+				float g=rand.nextFloat();
+				float b=rand.nextFloat();
+				
+				JButton otroBoton=new JButton(r+","+g+", "+b);
+				otroBoton.setBounds(x,y,w,h);
+				otroBoton.setBackground(Color.white);
+				otroBoton.setOpaque(true);
+				otroBoton.setBorderPainted(true);
+				otroBoton.setBorder(BorderFactory.createLineBorder(new Color(r,g,b), 2));
+				btnPanel.add(otroBoton);
+				
+				
+				
+				//e, sacar texto de ahi
+				
+				getContentPane().repaint();
+				getContentPane().validate();
+				
+			}
+			
+		});
+		
+		this.add(btnPanel);
+	}
 	/*public void paint(Graphics create)
 	{
 		
@@ -1604,6 +1665,31 @@ public class Ventana extends JFrame{
 		
 		g2d.setColor(new Color(210, 121, 42));
 		g2d.fillRoundRect(315,85,70,70,5,5);*/
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 		/*g2d.setColor(Color.black);
 		g2d.fillOval(245,110,19,19);
