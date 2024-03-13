@@ -1005,7 +1005,7 @@ public class Ventana extends JFrame implements MouseListener{
 		btnPanel.setBackground(Color.GRAY);
 		btnPanel.setLayout(null);
 		
-		JButton superBoton=new JButton("Clic");
+		JButton superBoton=new JButton("Click");
 		superBoton.setBounds(140, 565, 200, 50);
 		superBoton.setFont(new Font("Courier new",Font.BOLD ,25));
 		superBoton.setBackground(new Color(252, 141, 118));
@@ -1039,7 +1039,18 @@ public class Ventana extends JFrame implements MouseListener{
 				otroBoton.setBorder(BorderFactory.createLineBorder(new Color(r,g,b), 2));
 				btnPanel.add(otroBoton);
 				
-				
+				otroBoton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+					    JButton button = (JButton) e.getSource();
+					    String command = button.getActionCommand();
+					    JOptionPane.showMessageDialog(null, command, null, JOptionPane.WARNING_MESSAGE);
+						
+					}
+					
+				});
 				
 				//e, sacar texto de ahi
 				
