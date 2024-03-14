@@ -40,6 +40,7 @@ import java.awt.Graphics2D;
 
 public class Ventana extends JFrame implements MouseListener{
 
+	JPanel btnPanel= new JPanel();
 	public Ventana()
 	{
 		
@@ -1000,7 +1001,7 @@ public class Ventana extends JFrame implements MouseListener{
 	public void botones()
 	{
 		this.setSize(500, 700);
-		JPanel btnPanel= new JPanel();
+		
 		btnPanel.setSize(this.getWidth(),this.getHeight());
 		btnPanel.setBackground(Color.GRAY);
 		btnPanel.setLayout(null);
@@ -1020,8 +1021,8 @@ public class Ventana extends JFrame implements MouseListener{
 				// TODO Auto-generated method stub
 				System.out.println("Hola");
 				
-				int x=(int) Math.floor(Math.random()*450+1);
-				int y=(int) Math.floor(Math.random()*620+1);
+				int x=(int) Math.floor(Math.random()*400+1);
+				int y=(int) Math.floor(Math.random()*600+1);
 				
 				int w=(int) Math.floor(Math.random()*120+1);
 				int h=(int) Math.floor(Math.random()*120+1);
@@ -1052,6 +1053,8 @@ public class Ventana extends JFrame implements MouseListener{
 					
 				});
 				
+				
+				
 				//e, sacar texto de ahi
 				
 				getContentPane().repaint();
@@ -1063,6 +1066,65 @@ public class Ventana extends JFrame implements MouseListener{
 		
 		this.add(btnPanel);
 	}
+	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		//coordenadas
+		int x=e.getX();
+		int y=e.getY();
+		int w=(int) Math.floor(Math.random()*120+1);
+		int h=(int) Math.floor(Math.random()*120+1);
+		
+		Random rand= new Random();
+		float r=rand.nextFloat();
+		float g=rand.nextFloat();
+		float b=rand.nextFloat();
+		
+		JButton otroBoton=new JButton(r+","+g+", "+b);
+		otroBoton.setBounds(x-30,y-30,w,h);
+		otroBoton.setBackground(Color.white);
+		otroBoton.setOpaque(true);
+		otroBoton.setBorderPainted(true);
+		otroBoton.setBorder(BorderFactory.createLineBorder(new Color(r,g,b), 2));
+		btnPanel.add(otroBoton);
+		
+		otroBoton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			    JButton button = (JButton) e.getSource();
+			    String command = button.getActionCommand();
+			    JOptionPane.showMessageDialog(null, command, null, JOptionPane.WARNING_MESSAGE);
+				
+			}
+			
+		});
+		getContentPane().repaint();
+		getContentPane().validate();
+		
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	/*public void paint(Graphics create)
 	{
 		
@@ -1676,31 +1738,7 @@ public class Ventana extends JFrame implements MouseListener{
 		
 		g2d.setColor(new Color(210, 121, 42));
 		g2d.fillRoundRect(315,85,70,70,5,5);*/
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 		
 		/*g2d.setColor(Color.black);
 		g2d.fillOval(245,110,19,19);
