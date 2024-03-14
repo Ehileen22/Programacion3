@@ -1003,7 +1003,7 @@ public class Ventana extends JFrame implements MouseListener{
 		this.setSize(500, 700);
 		
 		btnPanel.setSize(this.getWidth(),this.getHeight());
-		btnPanel.setBackground(Color.GRAY);
+		btnPanel.setBackground(new Color(245, 186, 171 ));
 		btnPanel.setLayout(null);
 		
 		JButton superBoton=new JButton("Click");
@@ -1018,7 +1018,7 @@ public class Ventana extends JFrame implements MouseListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				System.out.println("Hola");
 				
 				int x=(int) Math.floor(Math.random()*400+1);
@@ -1046,8 +1046,11 @@ public class Ventana extends JFrame implements MouseListener{
 					public void actionPerformed(ActionEvent e) {
 						
 					    JButton button = (JButton) e.getSource();
-					    String command = button.getActionCommand();
-					    JOptionPane.showMessageDialog(null, command, null, JOptionPane.WARNING_MESSAGE);
+					    btnPanel.remove(button);
+					    getContentPane().repaint();
+						getContentPane().validate();
+					    //String command = (JButton) e.getSource()
+					    //JOptionPane.showMessageDialog(null, command, null, JOptionPane.WARNING_MESSAGE);
 						
 					}
 					
