@@ -1117,15 +1117,25 @@ public class Ventana extends JFrame implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
+	//Cambiar el color de fondo cada que entre cambiara el color de fondo
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
+		Random rand= new Random();
+		float r=rand.nextFloat();
+		float g=rand.nextFloat();
+		float b=rand.nextFloat();
 		
+		btnPanel.setBackground(new Color(r,g,b));
+		//muestra todos
+	
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+		
+		//esconde todos
 	}
 	
 	/*public void paint(Graphics create)
