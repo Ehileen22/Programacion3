@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -35,12 +37,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-public class Ventana extends JFrame implements MouseListener{
+public class Ventana extends JFrame implements MouseListener,KeyListener{
 
 	JPanel btnPanel= new JPanel();
+	
 	public Ventana()
 	{
 		
@@ -55,6 +60,10 @@ public class Ventana extends JFrame implements MouseListener{
 		this.setLayout(null);
 		this.iniciarComponentes();
 		this.setVisible(true);
+		this.addMouseListener(this);
+		btnPanel.addKeyListener(this);
+		btnPanel.setFocusable(true);
+		btnPanel.requestFocusInWindow();
 		
 		
 	}
@@ -71,7 +80,7 @@ public class Ventana extends JFrame implements MouseListener{
 		this.botones();
 		this.repaint();
 		this.validate();
-		addMouseListener(this);
+		
 			
 	}
 	public void login() {
@@ -1013,6 +1022,7 @@ public class Ventana extends JFrame implements MouseListener{
 		superBoton.setOpaque(true);
 		superBoton.setBorderPainted(true);
 		superBoton.setBorder(BorderFactory.createLineBorder(new Color(211,19,6), 2));
+		superBoton.setFocusable(false);
 		btnPanel.add(superBoton);
 		superBoton.addActionListener(new ActionListener() {
 
@@ -1038,6 +1048,7 @@ public class Ventana extends JFrame implements MouseListener{
 				otroBoton.setOpaque(true);
 				otroBoton.setBorderPainted(true);
 				otroBoton.setBorder(BorderFactory.createLineBorder(new Color(r,g,b), 2));
+				otroBoton.setFocusable(false);
 				btnPanel.add(otroBoton);
 				
 				otroBoton.addActionListener(new ActionListener() {
@@ -1059,7 +1070,7 @@ public class Ventana extends JFrame implements MouseListener{
 				
 				
 				//e, sacar texto de ahi
-				
+				btnPanel.requestFocusInWindow();
 				getContentPane().repaint();
 				getContentPane().validate();
 				
@@ -1084,13 +1095,14 @@ public class Ventana extends JFrame implements MouseListener{
 		float b=rand.nextFloat();
 		
 		JButton otroBoton=new JButton(r+","+g+", "+b);
+		otroBoton.setFocusable(false);
 		otroBoton.setBounds(x-30,y-30,w,h);
 		otroBoton.setBackground(Color.white);
 		otroBoton.setOpaque(true);
 		otroBoton.setBorderPainted(true);
 		otroBoton.setBorder(BorderFactory.createLineBorder(new Color(r,g,b), 2));
 		btnPanel.add(otroBoton);
-		
+	
 		otroBoton.addActionListener(new ActionListener() {
 
 			@Override
@@ -1099,10 +1111,14 @@ public class Ventana extends JFrame implements MouseListener{
 			    JButton button = (JButton) e.getSource();
 			    String command = button.getActionCommand();
 			    JOptionPane.showMessageDialog(null, command, null, JOptionPane.WARNING_MESSAGE);
-				
+			   
+			    
 			}
 			
 		});
+	
+		
+		btnPanel.requestFocusInWindow();
 		getContentPane().repaint();
 		getContentPane().validate();
 		
@@ -1125,7 +1141,6 @@ public class Ventana extends JFrame implements MouseListener{
 		float r=rand.nextFloat();
 		float g=rand.nextFloat();
 		float b=rand.nextFloat();
-		
 		btnPanel.setBackground(new Color(r,g,b));
 		//muestra todos
 	
@@ -1136,6 +1151,30 @@ public class Ventana extends JFrame implements MouseListener{
 		
 		
 		//esconde todos
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	//Ejercicio 12
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	    if (e.getKeyCode()==KeyEvent.VK_8) 
+	    {
+	        btnPanel.removeAll();
+	        getContentPane().repaint();
+	        getContentPane().validate();
+	    }
+		
+	}
+	//con la w se hacen mas grandes los botones
+	//Para los ultimos dos este de aqui atras
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/*public void paint(Graphics create)
