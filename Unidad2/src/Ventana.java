@@ -1,6 +1,7 @@
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -1160,12 +1161,26 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 	//Ejercicio 12
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
-	    if (e.getKeyCode()==KeyEvent.VK_8) 
+	    //Delete o supr
+		if (e.getKeyCode()==KeyEvent.VK_DELETE) 
 	    {
 	        btnPanel.removeAll();
 	        getContentPane().repaint();
 	        getContentPane().validate();
+	    }
+		//letra "w"
+	    Component [] elementos=btnPanel.getComponents();
+	    if (e.getKeyCode()==KeyEvent.VK_W) 
+	    {
+
+	    	for(int i=0; i<elementos.length;i++)
+	    	{
+	    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+	    		{
+	    			JButton btn =((JButton)elementos[i]);
+	    			btn.setSize((btn.getWidth()+10),(btn.getWidth()+10));
+	    		}
+	    	}
 	    }
 		
 	}
@@ -1177,6 +1192,9 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 		
 	}
 	
+	
+	// Aqui nada más separe los trabajos porque me preocupaba que no funcionaran bien al clonar los archivos
+	//Mario 2
 	/*public void paint(Graphics create)
 	{
 		
@@ -1558,8 +1576,13 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+	}*/
+	
+	//Mario 1
+	/*public void paint(Graphics create)
+	{
 		/////////////////////////////////////////////////////////
-		/*
+		
 		//this.setSize(1000, 700);
 		super.paint(create);
 		
@@ -1782,17 +1805,17 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 		g2d.drawLine(413,612,397, 625);
 		g2d.drawLine(413,472,397, 485);
 		
-		/*g2d.setColor(new Color(210, 121, 42));
+		g2d.setColor(new Color(210, 121, 42));
 		g2d.fillRoundRect(235,85,70,70,5,5);
 		
 		g2d.setColor(Color.BLACK);
 		g2d.fillRoundRect(310,80,80,80,5,5);
 		
 		g2d.setColor(new Color(210, 121, 42));
-		g2d.fillRoundRect(315,85,70,70,5,5);*/
+		g2d.fillRoundRect(315,85,70,70,5,5);
 	
 		
-		/*g2d.setColor(Color.black);
+		g2d.setColor(Color.black);
 		g2d.fillOval(245,110,19,19);
 		g2d.fillOval(290,105,15,10);
 		g2d.setColor(new Color(248, 193, 133));
@@ -1810,7 +1833,7 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 		g2d.setColor(new Color(13, 137, 31));
 		g2d.fillRoundRect(625,460,100,175,10,10);
 		
-		/*g2d.setColor(Color.BLACK);
+		g2d.setColor(Color.BLACK);
 		g2d.fillRoundRect(610,445,128,60,10,10);
 		
 		g2d.setColor(new Color(13, 137, 31));
@@ -1886,13 +1909,19 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 			g2d.drawImage(image2,640,323,null);
 		}catch(IOException e) {
 			e.printStackTrace();
+		}
+		
 		}*/
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+	//Casa
+	/*public void paint(Graphics create)
+	{
+		super.paint(create);
 		
-		
-		/*g2d.setColor(new Color(149, 245, 226 ));
-		g2d.fillRect(50,50,200,100);
+		Graphics2D g2d= (Graphics2D)create;
+		g2d.setColor(new Color(149, 245, 226 ));
+		g2d.fillRect(0,0,this.getWidth(),this.getHeight());
 		
 		//cafe
 		g2d.setColor(new Color(126, 55, 28 ));
@@ -2017,8 +2046,23 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 		int xPoints9[]= {630,700,700};
 		int yPoints9[]= {120,140,120};
 		g2d.fillPolygon(xPoints9, yPoints9, 3);
+		
+		
+		
+		
+		
+	}*/
+	
+	//Clase
+	/*public void paint(Graphics create)
+	{
+		super.paint(create);
+		
+		Graphics2D g2d= (Graphics2D)create;
+		g2d.setColor(new Color(149, 245, 226 ));
+		g2d.fillRect(0,0,this.getWidth(),this.getHeight());
 		//Asigna el color
-		/*g2d.setColor(Color.blue);
+		g2d.setColor(Color.blue);
 		//Fill
 		g2d.fillRect(50,50,200,100);
 		//Clear
@@ -2036,14 +2080,14 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 		
 		g2d.fillOval(350, 400, 50, 80);
 		
-		int xPoints[]= {100,250,300};
-		int yPoints[]= {100,200,300};
+		int xPoints1[]= {100,250,300};
+		int yPoints1[]= {100,200,300};
 		
 		g2d.setColor(Color.red);
 		
-		g2d.drawPolyline(xPoints, yPoints, 3);
+		g2d.drawPolyline(xPoints1, yPoints1, 3);
 		
-		g2d.fillPolygon(xPoints, yPoints, 3);
+		g2d.fillPolygon(xPoints1, yPoints1, 3);
 		
 		g2d.setFont(new Font("Courier new",Font.BOLD ,30));
 		g2d.drawString("Hola", 280, 150);
@@ -2057,11 +2101,7 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-				
-		
 	}*/
+		
+	
 }
