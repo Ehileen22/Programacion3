@@ -1170,7 +1170,7 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 	    }
 		//letra "w"
 	    Component [] elementos=btnPanel.getComponents();
-	    if (e.getKeyCode()==KeyEvent.VK_W) 
+	    if (e.getKeyCode()==KeyEvent.VK_T) 
 	    {
 
 	    	for(int i=0; i<elementos.length;i++)
@@ -1181,6 +1181,54 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 	    			btn.setSize((btn.getWidth()+10),(btn.getWidth()+10));
 	    		}
 	    	}
+	    }
+	    //arriba
+	    if(e.getKeyCode()==KeyEvent.VK_W)
+	    {
+	    	for(int i=0; i<elementos.length;i++)
+	    	{
+	    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+	    		{
+	    			JButton btn =((JButton)elementos[i]);
+	    			btn.setLocation((btn.getX()),(btn.getY()-10));
+	    		}
+	    	}	
+	    }
+	    //abajo
+	    if(e.getKeyCode()==KeyEvent.VK_S)
+	    {
+	    	for(int i=0; i<elementos.length;i++)
+	    	{
+	    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+	    		{
+	    			JButton btn =((JButton)elementos[i]);
+	    			btn.setLocation((btn.getX()),(btn.getY()+10));
+	    		}
+	    	}	
+	    }
+	    //derecha
+	    if(e.getKeyCode()==KeyEvent.VK_D)
+	    {
+	    	for(int i=0; i<elementos.length;i++)
+	    	{
+	    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+	    		{
+	    			JButton btn =((JButton)elementos[i]);
+	    			btn.setLocation((btn.getX()+10),(btn.getY()));
+	    		}
+	    	}	
+	    }
+	    //izquierda
+	    if(e.getKeyCode()==KeyEvent.VK_A)
+	    {
+	    	for(int i=0; i<elementos.length;i++)
+	    	{
+	    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+	    		{
+	    			JButton btn =((JButton)elementos[i]);
+	    			btn.setLocation((btn.getX()-10),(btn.getY()));
+	    		}
+	    	}	
 	    }
 		
 	}
