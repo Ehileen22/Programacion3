@@ -12,8 +12,12 @@ import java.awt.event.KeyEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Gato extends JFrame {
 
@@ -28,12 +32,16 @@ public class Gato extends JFrame {
 	JButton btnNewButton_7 = new JButton();
 	JButton btnNewButton_8 = new JButton();
 	JButton btnNewButton_9 = new JButton();
-	JPanel panel = new JPanel();
+
 	
 	JButton button= new JButton();
 	private static final long serialVersionUID = 1L;
-	
-
+	private final JPanel panel_1 = new JPanel();
+	JPanel panel = new JPanel();
+	private final JPanel panel_2 = new JPanel();
+	private final JButton reiniciar = new JButton("Reiniciar");
+	private int equis=0;
+	private int circulo=0;
 	/**
 	 * Launch the application.
 	 */
@@ -58,11 +66,29 @@ public class Gato extends JFrame {
 		JFrame frame=new JFrame();
 		frame.setBounds(100, 100, 384,324);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new GridLayout(0,1,0,0));
+		frame.getContentPane().setLayout(new BorderLayout());
 		frame.setVisible(true);
 		
+		JLabel lblNewLabel = new JLabel("O: "+circulo);
+		JLabel lblNewLabel_1 = new JLabel("X: "+equis);
 		
-		frame.getContentPane().add(panel);
+		frame.getContentPane().add(panel_1,BorderLayout.NORTH);
+		
+		frame.getContentPane().add(panel,BorderLayout.CENTER);
+		
+		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		panel_1.add(lblNewLabel);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblNewLabel_1);
+		
+		
+		
+		
+		
+		
+		panel_2.add(reiniciar);
 		panel.setLayout(new GridLayout(3, 3, 0, 0));
 		//JButton btnNewButton_0= new JButton("");
 		btnNewButton_1.setText("");
@@ -210,6 +236,32 @@ public class Gato extends JFrame {
 			}
 			
 		});
+		reiniciar.setVerticalAlignment(SwingConstants.BOTTOM);
+		reiniciar.addActionListener(new ActionListener() {
+
+			
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					Component [] elementos=panel.getComponents();
+					for(int i=0; i<elementos.length;i++)
+			    	{
+			    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+			    		{
+			    			JButton btn =((JButton)elementos[i]);
+			    			
+			    			btn.setText("");
+			    			btn.setBackground(Color.white);
+			    			btn.setEnabled(true);
+			    		}
+			    	}
+					
+								
+			}
+			
+		});
+		frame.getContentPane().add(panel_2,BorderLayout.SOUTH);
 	
 		
 	}
@@ -240,49 +292,56 @@ public class Gato extends JFrame {
 	
 	public void finJuego() {
 		//Horizontal
-		if(btnNewButton_1.getText().equals(btnNewButton_2.getText())&&btnNewButton_1.getText().equals(btnNewButton_3.getText())&&!btnNewButton_1.getText().isEmpty())
+		if(btnNewButton_1.getText().equals(btnNewButton_2.getText())&&btnNewButton_1.getText().equals(btnNewButton_3.getText())&&!btnNewButton_1.getText().isEmpty()&&btnNewButton_2.getText().equals(btnNewButton_3.getText())&&!btnNewButton_1.getText().equals(""))
 
 		{
+			System.out.println("1");
+			System.out.println(btnNewButton_1.getText());
 			fin=true;
 			
 		}
-		if(btnNewButton_4.getText().equals(btnNewButton_5.getText())&&btnNewButton_4.getText().equals(btnNewButton_6.getText())&&!btnNewButton_4.getText().isEmpty())
+		if(btnNewButton_4.getText().equals(btnNewButton_5.getText())&&btnNewButton_4.getText().equals(btnNewButton_6.getText())&&!btnNewButton_4.getText().isEmpty()&&btnNewButton_5.getText().equals(btnNewButton_6.getText())&&!btnNewButton_4.getText().equals(""))
 		{
+			System.out.println("2");
 			fin=true;
 			
 		}
-		if(btnNewButton_7.getText().equals(btnNewButton_8.getText())&&btnNewButton_7.getText().equals(btnNewButton_9.getText())&&!btnNewButton_7.getText().isEmpty())
+		if(btnNewButton_7.getText().equals(btnNewButton_8.getText())&&btnNewButton_7.getText().equals(btnNewButton_9.getText())&&!btnNewButton_7.getText().isEmpty()&& btnNewButton_8.getText().equals(btnNewButton_9.getText())&&!btnNewButton_7.getText().equals(""))
 		{
-			
+			System.out.println("3");
 			fin=true;
 		}
 		
 		//Vertical
-		if(btnNewButton_1.getText().equals(btnNewButton_4.getText())&&btnNewButton_1.getText().equals(btnNewButton_7.getText())&&!btnNewButton_1.getText().isEmpty())
+		if(btnNewButton_1.getText().equals(btnNewButton_4.getText())&&btnNewButton_1.getText().equals(btnNewButton_7.getText())&&!btnNewButton_1.getText().isEmpty()&&btnNewButton_4.getText().equals(btnNewButton_7.getText())&&!btnNewButton_1.getText().equals(""))
 		{
+			System.out.println("3");
 			fin=true;
 			
 		}
-		if(btnNewButton_2.getText().equals(btnNewButton_5.getText())&&btnNewButton_2.getText().equals(btnNewButton_8.getText())&&!btnNewButton_2.getText().isEmpty())
+		if(btnNewButton_2.getText().equals(btnNewButton_5.getText())&&btnNewButton_2.getText().equals(btnNewButton_8.getText())&&!btnNewButton_2.getText().isEmpty()&&btnNewButton_5.getText().equals(btnNewButton_8.getText())&&!btnNewButton_2.getText().equals(""))
 		{
+			System.out.println("3");
 			fin=true;
 			
 		}
-		if(btnNewButton_3.getText().equals(btnNewButton_6.getText())&&btnNewButton_3.getText().equals(btnNewButton_9.getText())&&!btnNewButton_3.getText().isEmpty())
+		if(btnNewButton_3.getText().equals(btnNewButton_6.getText())&&btnNewButton_3.getText().equals(btnNewButton_9.getText())&&!btnNewButton_3.getText().isEmpty()&&btnNewButton_6.getText().equals(btnNewButton_9.getText())&&!btnNewButton_3.getText().equals(""))
 		{
+			System.out.println("3");
 			fin=true;
 			
 		}
 		//Cruzados
 		
-		if(btnNewButton_1.getText().equals(btnNewButton_5.getText())&&btnNewButton_1.getText().equals(btnNewButton_9.getText())&&!btnNewButton_1.getText().isEmpty())
+		if(btnNewButton_1.getText().equals(btnNewButton_5.getText())&&btnNewButton_1.getText().equals(btnNewButton_9.getText())&&!btnNewButton_1.getText().isEmpty()&&btnNewButton_5.getText().equals(btnNewButton_9.getText())&&!btnNewButton_1.getText().equals(""))
 		{
+			System.out.println("3");
 			fin=true;
 			
 		}
-		if(btnNewButton_3.getText().equals(btnNewButton_5.getText())&&btnNewButton_3.getText().equals(btnNewButton_7.getText())&&!btnNewButton_3.getText().isEmpty())
+		if(btnNewButton_3.getText().equals(btnNewButton_5.getText())&&btnNewButton_3.getText().equals(btnNewButton_7.getText())&&!btnNewButton_3.getText().isEmpty()&&btnNewButton_5.getText().equals(btnNewButton_7.getText())&&!btnNewButton_3.getText().equals(""))
 		{
-			
+			System.out.println("3");
 			fin=true;
 		}
 		
@@ -295,10 +354,15 @@ public class Gato extends JFrame {
 	    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
 	    		{
 	    			JButton btn =((JButton)elementos[i]);
-	    			btn.setEnabled(false);
+	    			btn.setText("");
+	    			btn.setBackground(Color.white);
+	    			btn.setEnabled(true);
+	    			System.out.println("Reactivando botón " + i);
+	    			equis++;
+	    			circulo++;
 	    		}
 	    	}
-			
+			fin = false;
 		}
 		
 		
