@@ -42,6 +42,8 @@ public class Gato extends JFrame {
 	private final JButton reiniciar = new JButton("Reiniciar");
 	private int equis=0;
 	private int circulo=0;
+	private JLabel lblNewLabel = new JLabel(" ");
+	private JLabel lblNewLabel_1 = new JLabel(" ");
 	/**
 	 * Launch the application.
 	 */
@@ -69,8 +71,7 @@ public class Gato extends JFrame {
 		frame.getContentPane().setLayout(new BorderLayout());
 		frame.setVisible(true);
 		
-		JLabel lblNewLabel = new JLabel("O: "+circulo);
-		JLabel lblNewLabel_1 = new JLabel("X: "+equis);
+		
 		
 		frame.getContentPane().add(panel_1,BorderLayout.NORTH);
 		
@@ -84,7 +85,8 @@ public class Gato extends JFrame {
 		panel_1.add(lblNewLabel_1);
 		
 		
-		
+		lblNewLabel.setText("O: "+circulo);
+		lblNewLabel_1.setText("X: "+equis);
 		
 		
 		
@@ -348,7 +350,15 @@ public class Gato extends JFrame {
 		Component [] elementos=panel.getComponents();
 		if(fin)
 		{
+			
 			JOptionPane.showMessageDialog(null,"Ganaste jugador:   "+ (turno ? "X":"O"), null, JOptionPane.WARNING_MESSAGE);
+			if (turno) {
+	            equis++;
+	        } else {
+	            circulo++;
+	        }
+			lblNewLabel.setText("O: " + circulo);
+	        lblNewLabel_1.setText("X: " + equis);
 			for(int i=0; i<elementos.length;i++)
 	    	{
 	    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
@@ -358,8 +368,6 @@ public class Gato extends JFrame {
 	    			btn.setBackground(Color.white);
 	    			btn.setEnabled(true);
 	    			System.out.println("Reactivando botón " + i);
-	    			equis++;
-	    			circulo++;
 	    		}
 	    	}
 			fin = false;

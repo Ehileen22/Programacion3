@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -21,6 +23,9 @@ import javax.swing.JButton;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 
 public class Tablero extends JFrame {
 
@@ -44,16 +49,27 @@ public class Tablero extends JFrame {
 	JButton btnNewButton_16 = new JButton();
 
 	
-	JButton button= new JButton();
+	private JButton button= new JButton();
 	private static final long serialVersionUID = 1L;
 	private final JPanel panel_1 = new JPanel();
-	JPanel panel = new JPanel();
+	private JPanel panel = new JPanel();
 	private final JPanel panel_2 = new JPanel();
 	private final JPanel panel_3 = new JPanel();
 	private final JPanel panel_4 = new JPanel();
-	private final JButton reiniciar = new JButton("Reiniciar");
-	private String btns[]={"1","2","3","4","5","6","7","8","9","10","11","12", "13", "14", "15", " "};
-	
+	private JLabel tiempo= new JLabel("", SwingConstants.LEFT);
+	private final JButton reiniciar = new JButton("Reiniciar tablero");
+	private JLabel etiquetaContador = new JLabel();
+	private String btns[]={"1","2","3","4","5","6","7","8","9","10","11","12", "13", "14", "15"," "};
+	private String btns2[]={"1","2","3","4","5","6","7","8","9","10","11","12", "13", "14", "15"," "};
+	private LocalTime currentTime = LocalTime.now();
+	private Timer timer;
+	private int contadorJugadas=0;
+	private LocalTime tiempoInicio;
+	private boolean seguir=true;
+	private TimerTask timerTask;
+	private boolean pausaJuego;
+	private boolean juegoPausado = false;
+	private LocalTime tiempoPausado;
 	/**
 	 * Launch the application.
 	 */
@@ -75,100 +91,74 @@ public class Tablero extends JFrame {
 	 */
 	public Tablero() {
 		
-		JFrame frame=new JFrame();
-		frame.setBounds(100, 100, 400,500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout());
-		frame.setVisible(true);
+		JFrame frmRompecabezas=new JFrame();
+		frmRompecabezas.setTitle("Rompecabezas");
+		frmRompecabezas.setBounds(100, 100, 400,500);
+		frmRompecabezas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmRompecabezas.getContentPane().setLayout(new BorderLayout());
+		frmRompecabezas.setVisible(true);
+		LocalTime iniciar= LocalTime.now();
 		
-		JLabel lblNewLabel = new JLabel("   ");
-		JLabel lblNewLabel_1 = new JLabel("   ");
 		JLabel lblNewLabe2 = new JLabel("   ");
 		JLabel lblNewLabel3 = new JLabel("   ");
-		
+		etiquetaContador.setText("Contador de jugadas: " + contadorJugadas);
 		
 		panel_1.setBackground(new Color(164, 224, 193 ));
 		panel_2.setBackground(new Color(164, 224, 193 ));
 		panel_3.setBackground(new Color(164, 224, 193 ));
 		panel_4.setBackground(new Color(164, 224, 193 ));
 		
-		frame.getContentPane().add(panel_1,BorderLayout.NORTH);
-		frame.getContentPane().add(panel,BorderLayout.CENTER);
-		frame.getContentPane().add(panel_3,BorderLayout.WEST);
-		frame.getContentPane().add(panel_4,BorderLayout.EAST);
+		frmRompecabezas.getContentPane().add(panel_1,BorderLayout.NORTH);
+		frmRompecabezas.getContentPane().add(panel,BorderLayout.CENTER);
+		frmRompecabezas.getContentPane().add(panel_3,BorderLayout.WEST);
+		frmRompecabezas.getContentPane().add(panel_4,BorderLayout.EAST);
 		
+		
+		panel_4.setBackground(new Color(164, 224, 193 ));
+		tiempo.setVerticalAlignment(SwingConstants.BOTTOM);
+
 		panel_1.setLayout(new GridLayout(1, 0, 0, 0));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaContador.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(etiquetaContador);
+		panel_1.add(tiempo);
 		
-		panel_1.add(lblNewLabel);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblNewLabel_1);
+		JButton pausa= new JButton("   Pausa   ");
+		pausa.setPreferredSize(new Dimension(100,30));
+		pausa.setBackground(new Color(21, 117, 179));
+		pausa.setForeground(Color.white);
+		pausa.setBorderPainted(true);
+		pausa.setBorder(BorderFactory.createLineBorder(new Color(0, 53, 88),2));
+		panel_2.add(pausa);
+		pausa.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Component [] elementos=panel.getComponents();
+				for(int i=0; i<elementos.length;i++)
+		    	{
+		    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+		    		{
+		    			JButton button=(JButton)elementos[i];
+		    			button.setEnabled(false);
+		    							    		
+		    		}
+		    	}
+				pausaJuego();
+					
+			}
+			
+		});
 		
 		reiniciar.setPreferredSize(new Dimension(100,30));
-		reiniciar.setBackground(new Color(21, 117, 179));
-		reiniciar.setForeground(Color.white);
+		reiniciar.setBackground(new Color(129, 245, 182));
+		reiniciar.setForeground(new Color(0, 0, 0));
 		reiniciar.setBorderPainted(true);
 		reiniciar.setBorder(BorderFactory.createLineBorder(new Color(0, 53, 88),2));
 		
 		panel_2.add(reiniciar);
 		panel.setLayout(new GridLayout(4, 4, 0, 0));
-		
-		//JButton btnNewButton_0= new JButton("");
-		/*btnNewButton_1.setText("");
-		btnNewButton_1.setBackground(Color.white);
 	
-		
-		btnNewButton_2.setText("");
-		btnNewButton_2.setBackground(Color.white);
-		
-		btnNewButton_3.setText("");
-		btnNewButton_3.setBackground(Color.white);
-		
-		
-		btnNewButton_4.setText("");
-		btnNewButton_4.setBackground(Color.white);
-		
-		btnNewButton_5.setText("");
-		btnNewButton_5.setBackground(Color.white);
-		
-		
-		btnNewButton_6.setText("");
-		btnNewButton_6.setBackground(Color.white);
-
-	
-		btnNewButton_7.setText("");
-		btnNewButton_7.setBackground(Color.white);
-		
-		
-		btnNewButton_8.setText("");
-		btnNewButton_8.setBackground(Color.white);
-		
-		
-		btnNewButton_9.setText("");
-		btnNewButton_9.setBackground(Color.white);
-		
-		btnNewButton_10.setText("");
-		btnNewButton_10.setBackground(Color.white);
-		
-		btnNewButton_11.setText("");
-		btnNewButton_11.setBackground(Color.white);
-		
-		btnNewButton_12.setText("");
-		btnNewButton_12.setBackground(Color.white);
-		
-		btnNewButton_13.setText("");
-		btnNewButton_13.setBackground(Color.white);
-		
-		btnNewButton_14.setText("");
-		btnNewButton_14.setBackground(Color.white);
-		
-		btnNewButton_15.setText("");
-		btnNewButton_15.setBackground(Color.white);
-		
-		btnNewButton_16.setText("");
-		btnNewButton_16.setBackground(Color.white);*/
-		
-		
 		Collections.shuffle(Arrays.asList(btns));
 		for(int i=0; i<16; i++)
 		{
@@ -194,166 +184,212 @@ public class Tablero extends JFrame {
 		}
 		
 		
-		
-		/*panel.add(btnNewButton_1);
-		panel.add(btnNewButton_2);
-		panel.add(btnNewButton_3);
-		panel.add(btnNewButton_4);
-		panel.add(btnNewButton_5);
-		panel.add(btnNewButton_6);	
-		panel.add(btnNewButton_7);	
-		panel.add(btnNewButton_8);	
-		panel.add(btnNewButton_9);
-		panel.add(btnNewButton_10);
-		panel.add(btnNewButton_11);
-		panel.add(btnNewButton_12);
-		panel.add(btnNewButton_13);
-		panel.add(btnNewButton_14);
-		panel.add(btnNewButton_15);
-		panel.add(btnNewButton_16);*/
-		
-		
-		
-		/*btnNewButton_1.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});
-		
-
-		btnNewButton_2.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});
-
-		btnNewButton_3.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});
-
-		btnNewButton_4.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});
-		btnNewButton_5.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});
-		
-
-		btnNewButton_6.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});
-		
-		btnNewButton_7.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});
-		btnNewButton_8.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});
-		
-
-		btnNewButton_9.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton button = (JButton) e.getSource(); 
-				click(button);
-				
-			}
-			
-		});*/
-		
-		
 		reiniciar.addActionListener(new ActionListener() {
-
-			
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				contadorJugadas=0;
+				etiquetaContador.setText("Contador de Jugadas: "+contadorJugadas);
+				
 				Collections.shuffle(Arrays.asList(btns));
+				Component [] elementos=panel.getComponents();
 				for(int i=0; i<elementos.length;i++)
 		    	{
 		    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
 		    		{
-		    			JButton button= new JButton(btns[i]);
+		    			JButton button=(JButton)elementos[i];
+		    			button.setText(btns[i]);
 		    			button.setBackground(Color.white);
-		    			panel.add(button);
-		    						    		
+		    			button.setEnabled(true);
+		    							    		
 		    		}
 		    	}
+				tiempoInicio = LocalTime.now();
 					
 								
 			}
 			
+			
 		});
-		frame.getContentPane().add(panel_2,BorderLayout.SOUTH);
-	
+		frmRompecabezas.getContentPane().add(panel_2,BorderLayout.SOUTH);
+		JButton reanudar= new JButton("Reanudar");
+		panel_2.add(reanudar);
+		reanudar.setPreferredSize(new Dimension(100,30));
+		reanudar.setBackground(new Color(21, 117, 179));
+		reanudar.setForeground(Color.white);
+		reanudar.setBorderPainted(true);
+		reanudar.setBorder(BorderFactory.createLineBorder(new Color(0, 53, 88),2));
 		
+		reanudar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Component [] elementos=panel.getComponents();
+				for(int i=0; i<elementos.length;i++)
+		    	{
+		    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+		    		{
+		    			JButton button=(JButton)elementos[i];
+		    			button.setEnabled(true);
+		    							    		
+		    		}
+		    	}
+				reanudarJuego();
+					
+			}
+			
+		});
+		temporizador();		    
 	}
+	
 	public void click(JButton button) {	
 
-		if(button.getText().equals("1"))
+		Component [] elementos=panel.getComponents();
+		int contador=-1;
+		for(int i=0; i<elementos.length;i++)
+    	{
+			if(elementos[i]==button)
+			{
+				contador=i;
+				break;
+			}
+			
+    	}
+		
+		
+		
+		JButton cambio=null;
+		//Arriba
+		if(contador-4>=0 && ((JButton) elementos[contador-4]).getText().equals(" "))
+		{
+			cambio=(JButton)elementos[contador-4];
+		}
+		//abajo
+		else if(contador+4< elementos.length && ((JButton) elementos[contador+4]).getText().equals(" "))
+		{
+			cambio=(JButton)elementos[contador+4];
+		}
+		//izquierda
+		else if(contador%4!=0 &&((JButton) elementos[contador-1]).getText().equals(" "))
+		{
+			cambio=(JButton)elementos[contador-1];
+		}
+		//derecha
+		else if((contador+1)%4!=0 &&((JButton) elementos[contador+1]).getText().equals(" "))
+		{
+			cambio=(JButton)elementos[contador+1];
+		}
+		
+		if(cambio!=null)
+		{
+			String newText= button.getText();
+			button.setText(cambio.getText());
+			cambio.setText(newText);
+			contadorJugadas++;
+			etiquetaContador.setText("Contador de Jugadas: "+contadorJugadas);
+			finJuego();
+		}
+	    
+	   //Intercambio
+		/*if(button.getText().equals("1"))
 		{
 			button.setBackground(Color.red);
-		}
-		finJuego();
+		}*/
 	}
 	
 	public void finJuego() {
 		
-	}
+		Component [] elementos=panel.getComponents();
+		String[] arregloAhora=new String[16];
 		
+		for(int i=0; i<elementos.length;i++)
+		{
+			arregloAhora[i]=((JButton)elementos[i]).getText();
+		}
+		if(Arrays.equals(btns2, arregloAhora))
+		{
+			pausaJuego();
+			JOptionPane.showMessageDialog(null,"Ganaste!!!"+"\n"+tiempo.getText(), null, JOptionPane.WARNING_MESSAGE);
+			Collections.shuffle(Arrays.asList(btns));
+			contadorJugadas=0;
+			etiquetaContador.setText("Contador de Jugadas: "+contadorJugadas);
+			for(int i=0; i<elementos.length;i++)
+	    	{
+	    		if(elementos[i].getClass().toString().equals("class javax.swing.JButton"))
+	    		{
+	    			JButton button=(JButton)elementos[i];
+	    			button.setText(btns[i]);
+	    			button.setBackground(Color.white);	
+	    			
+	    						    		
+	    		}
+	    	}
+			 
+		    
+		        
+			
+			
+			
+			
+		}
+		
+		/*for(int i=0; i<elementos.length-1;i++)
+    	{
+			JButton button=(JButton) elementos[i];
+			int
+			if(elementos[i]==button)
+			{
+				contador=i;
+				break;
+			}
+			
+    	}*/
+		
+	}
+	public void temporizador()
+	{
+		tiempoInicio = LocalTime.now();
+		TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+            	
+            	if (!juegoPausado) {
+            		LocalTime tiempoActual = LocalTime.now();
+            		if(tiempoPausado!=null)
+            		{
+            			
+						long pausaDuracion = tiempoPausado.until(tiempoActual, ChronoUnit.MILLIS);
+                        tiempoInicio = tiempoInicio.plus(pausaDuracion, ChronoUnit.MILLIS);
+                        tiempoPausado = null;
+            		}
+	              
+	                long miliTranscurridos= tiempoInicio.until(tiempoActual, ChronoUnit.MILLIS);
+	                long segundosTranscurridos=miliTranscurridos/1000;
+	                long horas =segundosTranscurridos/3600;
+	                long minutos=(segundosTranscurridos%3600)/60;
+	                long segundos= segundosTranscurridos%60;
+	                long milisegundos=miliTranscurridos%1000;
+	                String milisegundosStr=String.format("%03d", milisegundos);
+	                milisegundosStr=milisegundosStr.substring(0, 2);
+	                tiempo.setText(String.format("Tiempo: %02d:%02d:%02d:%s", horas, minutos, segundos, milisegundosStr));
+            	}
+            	
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(task, 0,100);
+	
+	}
+	private void pausaJuego() {
+        juegoPausado=true;
+        tiempoPausado=LocalTime.now();
+    }
+
+    private void reanudarJuego() {
+        juegoPausado=false;
+    }
+    
 		
 		
 		
