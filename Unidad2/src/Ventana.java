@@ -70,12 +70,12 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 	}
 	public void iniciarComponentes()
 	{
-		//this.login();
+		this.login();
 		//this.registro();
 		//this.admin();
 		//this.calculadora();
 		//this.account();
-		this.calcu2();	
+		//this.calcu2();	
 		//this.interes();
 		//this.paint(getGraphics());
 		//this.botones();
