@@ -29,6 +29,7 @@ public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public JFrame frame;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -118,6 +119,7 @@ public class Login extends JFrame {
 					frame.removeAll();			
 					getContentPane().removeAll();
 					recuperarCuenta(frame);
+					//getContentPane().repaint();
 					frame.repaint();
 					frame.revalidate();
 					
@@ -132,24 +134,114 @@ public class Login extends JFrame {
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Alta");
 		mnNewMenu_1.add(mntmNewMenuItem_4);
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					frame.removeAll();			
+					getContentPane().removeAll();
+					alta(frame);
+					//getContentPane().repaint();
+					frame.repaint();
+					frame.revalidate();
+					
+			}
+			
+		});
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Baja");
 		mnNewMenu_1.add(mntmNewMenuItem_3);
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					frame.removeAll();			
+					getContentPane().removeAll();
+					baja(frame);
+					//getContentPane().repaint();
+					frame.repaint();
+					frame.revalidate();
+					
+			}
+			
+		});
 		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Consultar");
 		mnNewMenu_1.add(mntmNewMenuItem_5);
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					frame.removeAll();			
+					getContentPane().removeAll();
+					consulta(frame);
+					//getContentPane().repaint();
+					frame.repaint();
+					frame.revalidate();
+					
+			}
+			
+		});
 		
 		JMenu mnNewMenu_2 = new JMenu("Ayuda");
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("¿Cómo crear un usuario?");
 		mnNewMenu_2.add(mntmNewMenuItem_6);
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					frame.removeAll();			
+					getContentPane().removeAll();
+					pregUsuario(frame);
+					//getContentPane().repaint();
+					frame.repaint();
+					frame.revalidate();
+					
+			}
+			
+		});
 		
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("¿Cómo acceder al sistema?");
 		mnNewMenu_2.add(mntmNewMenuItem_8);
+		mntmNewMenuItem_8.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					frame.removeAll();			
+					getContentPane().removeAll();
+					pregAcceso(frame);
+					//getContentPane().repaint();
+					frame.repaint();
+					frame.revalidate();
+					
+			}
+			
+		});
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("¿Qué pasa si olvidé mi contraseña?");
 		mnNewMenu_2.add(mntmNewMenuItem_7);
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+					frame.removeAll();			
+					getContentPane().removeAll();
+					pregContra(frame);
+					//getContentPane().repaint();
+					frame.repaint();
+					frame.revalidate();
+					
+			}
+			
+		});
 		this.login(frame);
 		
 		
@@ -480,24 +572,284 @@ public class Login extends JFrame {
 		recuperar.setBackground(Color.decode("#354E8E"));
 		recuperar.setLayout(null);
 		
-		JLabel loginTitle=new JLabel("Recuperación de cuenta",0);
+		JLabel loginTitle=new JLabel("Recuperar cuenta",0);
 		loginTitle.setSize(569, 80);
 		loginTitle.setFont(new Font("Georgia",Font.BOLD ,40));
 		loginTitle.setForeground(new Color(243, 189, 80));
-		loginTitle.setLocation(74, 11);
+		loginTitle.setLocation(75, 25);
 		loginTitle.setOpaque(false);
 		recuperar.add(loginTitle);
 		
+		
+		JLabel correo = new JLabel("Correo electrónico");
+		correo.setBounds(179, 193, 300, 35);
+		correo.setFont(new Font("Georgia",Font.BOLD ,20));
+		correo.setForeground(Color.WHITE);
+		recuperar.add(correo);
+		
+		JTextField correoResponse = new JTextField();
+		correoResponse.setBounds(175, 245, 367, 35);
+		recuperar.add(correoResponse);
+		
+		
+		JButton btnNewButton_1 = new JButton("Restablecer");
+		btnNewButton_1.setBorder(BorderFactory.createLineBorder(new Color (0, 42, 70), 3));
+		btnNewButton_1.setBackground(new Color(255, 214, 128));
+		btnNewButton_1.setFont(new Font("Georgia", Font.BOLD, 20));
+		btnNewButton_1.setBounds(249, 447, 230, 35);
+		recuperar.add(btnNewButton_1);
+	
+		getContentPane().add(recuperar);
+		
+
+		
+		
+		JButton btnNewButton_1_1 = new JButton("Regresar al login");
+		btnNewButton_1_1.setBackground(new Color(255, 214, 128));
+		btnNewButton_1_1.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+		btnNewButton_1_1.setFont(new Font("Georgia", Font.BOLD, 15));
+		btnNewButton_1_1.setBounds(249, 539, 230, 27);
+		recuperar.add(btnNewButton_1_1);
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.remove(recuperar);			
+				getContentPane().removeAll();
+				login(frame);
+				frame.repaint();
+				frame.revalidate();
+			}
+		});
+		
+		
+		
+		
+		JLabel correo_1 = new JLabel("Confirmar correo electrónico");
+		correo_1.setForeground(Color.WHITE);
+		correo_1.setFont(new Font("Georgia", Font.BOLD, 20));
+		correo_1.setBounds(179, 291, 326, 35);
+		recuperar.add(correo_1);
+		
+		
+		
+		textField = new JTextField();
+		textField.setBounds(179, 337, 367, 35);
+		recuperar.add(textField);
+		
 		JLabel color = new JLabel();
 		color.setBackground(new Color(48, 67, 117));
-		color.setBounds(40,102 , 650, 438);
+		color.setBounds(40,135 , 650, 382);
 		color.setOpaque(true);
 		color.setFont(new Font("Georgia",Font.BOLD ,25));
 		recuperar.add(color);
 		
-		getContentPane().add(recuperar);
+		
 		
 		frame.repaint();
 		frame.revalidate();
 	}
+	
+	private void alta(JFrame frame)
+	{
+		
+		this.setSize(750, 650);
+		this.setResizable(true);
+		this.setTitle("Alta");
+		
+		JPanel alta= new JPanel();
+		alta.setSize(this.getWidth(),this.getHeight());
+		alta.setLocation(0,0);
+		alta.setBackground(Color.decode("#354E8E"));
+		alta.setLayout(null);
+		
+		JLabel loginTitle=new JLabel("Dar de alta",0);
+		loginTitle.setSize(569, 80);
+		loginTitle.setFont(new Font("Georgia",Font.BOLD ,40));
+		loginTitle.setForeground(new Color(243, 189, 80));
+		loginTitle.setLocation(75, 25);
+		loginTitle.setOpaque(false);
+		alta.add(loginTitle);
+		
+		
+		JLabel color = new JLabel();
+		color.setBackground(new Color(48, 67, 117));
+		color.setBounds(40,135 , 650, 382);
+		color.setOpaque(true);
+		alta.add(color);
+		
+		
+		getContentPane().add(alta);
+		frame.repaint();
+		frame.revalidate();
+	}
+	
+	private void baja(JFrame frame)
+	{
+		
+		this.setSize(750, 650);
+		this.setResizable(true);
+		this.setTitle("Baja");
+		
+		JPanel baja= new JPanel();
+		baja.setSize(this.getWidth(),this.getHeight());
+		baja.setLocation(0,0);
+		baja.setBackground(Color.decode("#354E8E"));
+		baja.setLayout(null);
+		
+		JLabel loginTitle=new JLabel("Dar de baja",0);
+		loginTitle.setSize(569, 80);
+		loginTitle.setFont(new Font("Georgia",Font.BOLD ,40));
+		loginTitle.setForeground(new Color(243, 189, 80));
+		loginTitle.setLocation(75, 25);
+		loginTitle.setOpaque(false);
+		baja.add(loginTitle);
+		
+		
+		JLabel color = new JLabel();
+		color.setBackground(new Color(48, 67, 117));
+		color.setBounds(40,135 , 650, 382);
+		color.setOpaque(true);
+		baja.add(color);
+		
+		getContentPane().add(baja);
+		
+		frame.repaint();
+		frame.revalidate();
+	}
+	private void consulta(JFrame frame)
+	{
+		
+		this.setSize(750, 650);
+		this.setResizable(true);
+		this.setTitle("Consulta");
+		
+		JPanel consulta= new JPanel();
+		consulta.setSize(this.getWidth(),this.getHeight());
+		consulta.setLocation(0,0);
+		consulta.setBackground(Color.decode("#354E8E"));
+		consulta.setLayout(null);
+		
+		JLabel loginTitle=new JLabel("Consultar",0);
+		loginTitle.setSize(569, 80);
+		loginTitle.setFont(new Font("Georgia",Font.BOLD ,40));
+		loginTitle.setForeground(new Color(243, 189, 80));
+		loginTitle.setLocation(75, 25);
+		loginTitle.setOpaque(false);
+		consulta.add(loginTitle);
+		
+		
+		JLabel color = new JLabel();
+		color.setBackground(new Color(48, 67, 117));
+		color.setBounds(40,135 , 650, 382);
+		color.setOpaque(true);
+		consulta.add(color);
+		
+		getContentPane().add(consulta);
+		
+		frame.repaint();
+		frame.revalidate();
+	}
+	
+	private void pregUsuario(JFrame frame)
+	{
+		
+		this.setSize(750, 650);
+		this.setResizable(true);
+		this.setTitle("¿Cómo crear un usuario?");
+		
+		JPanel preguntaUsuario= new JPanel();
+		preguntaUsuario.setSize(this.getWidth(),this.getHeight());
+		preguntaUsuario.setLocation(0,0);
+		preguntaUsuario.setBackground(Color.decode("#354E8E"));
+		preguntaUsuario.setLayout(null);
+		
+		JLabel loginTitle=new JLabel("¿Cómo crear un usuario?",0);
+		loginTitle.setSize(569, 80);
+		loginTitle.setFont(new Font("Georgia",Font.BOLD ,40));
+		loginTitle.setForeground(new Color(243, 189, 80));
+		loginTitle.setLocation(75, 25);
+		loginTitle.setOpaque(false);
+		preguntaUsuario.add(loginTitle);
+		
+		
+		JLabel color = new JLabel();
+		color.setBackground(new Color(48, 67, 117));
+		color.setBounds(40,135 , 650, 382);
+		color.setOpaque(true);
+		preguntaUsuario.add(color);
+		
+		getContentPane().add(preguntaUsuario);
+		
+		frame.repaint();
+		frame.revalidate();
+	}
+	
+	private void pregAcceso(JFrame frame)
+	{
+		
+		this.setSize(750, 650);
+		this.setResizable(true);
+		this.setTitle("¿Cómo acceder al sistema?");
+		
+		JPanel preguntaAcceso= new JPanel();
+		preguntaAcceso.setSize(this.getWidth(),this.getHeight());
+		preguntaAcceso.setLocation(0,0);
+		preguntaAcceso.setBackground(Color.decode("#354E8E"));
+		preguntaAcceso.setLayout(null);
+		
+		JLabel loginTitle=new JLabel("¿Cómo acceder al sistema?",0);
+		loginTitle.setSize(569, 80);
+		loginTitle.setFont(new Font("Georgia",Font.BOLD ,40));
+		loginTitle.setForeground(new Color(243, 189, 80));
+		loginTitle.setLocation(75, 25);
+		loginTitle.setOpaque(false);
+		preguntaAcceso.add(loginTitle);
+		
+		
+		JLabel color = new JLabel();
+		color.setBackground(new Color(48, 67, 117));
+		color.setBounds(40,135 , 650, 382);
+		color.setOpaque(true);
+		preguntaAcceso.add(color);
+		
+		getContentPane().add(preguntaAcceso);
+		
+		frame.repaint();
+		frame.revalidate();
+	}
+	
+	private void pregContra(JFrame frame)
+	{
+		
+		this.setSize(750, 650);
+		this.setResizable(true);
+		this.setTitle("¿Qué pasa si olvidé mi contraseña?");
+		
+		JPanel preguntaContra= new JPanel();
+		preguntaContra.setSize(this.getWidth(),this.getHeight());
+		preguntaContra.setLocation(0,0);
+		preguntaContra.setBackground(Color.decode("#354E8E"));
+		preguntaContra.setLayout(null);
+		
+		JLabel loginTitle=new JLabel("¿Qué pasa si olvidé mi contraseña?",0);
+		loginTitle.setSize(727, 80);
+		loginTitle.setFont(new Font("Georgia", Font.BOLD, 35));
+		loginTitle.setForeground(new Color(243, 189, 80));
+		loginTitle.setLocation(0, 32);
+		loginTitle.setOpaque(false);
+		preguntaContra.add(loginTitle);
+		
+		
+		JLabel color = new JLabel();
+		color.setBackground(new Color(48, 67, 117));
+		color.setBounds(40,135 , 650, 382);
+		color.setOpaque(true);
+		preguntaContra.add(color);
+		
+		getContentPane().add(preguntaContra);
+		
+		frame.repaint();
+		frame.revalidate();
+	}
+	
+	
 }
