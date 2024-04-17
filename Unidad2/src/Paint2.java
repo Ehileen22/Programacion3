@@ -19,6 +19,9 @@ public class Paint2 extends JFrame implements KeyListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame;
+	private JPanel panel_1;
+	private JPanel panel ;
+	private int x=250, y=180;
 
 	/**
 	 * Launch the application.
@@ -46,14 +49,14 @@ public class Paint2 extends JFrame implements KeyListener {
 		frame.getContentPane().setLayout(null);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);		
-		JPanel panel = new JPanel(){
+		panel = new JPanel(){
 			@Override
 			public void paintComponent(Graphics create)
 			{
 				super.paintComponent(create);
 				Graphics2D g2d= (Graphics2D)create;	
 				g2d.setColor(new Color(149,27,27));
-				g2d.fillRect(100,100,150,80);
+				g2d.fillRect(x,y,80,80);
 			}
 		};
 		
@@ -62,7 +65,7 @@ public class Paint2 extends JFrame implements KeyListener {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
+		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(248, 124, 140));
 		panel_1.setBounds(0, 422, 601, 52);
 		frame.getContentPane().add(panel_1);
@@ -77,7 +80,7 @@ public class Paint2 extends JFrame implements KeyListener {
 			}
 		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setBounds(261, 18, 89, 23);
+		btnNewButton.setBounds(252, 18, 89, 23);
 		panel_1.add(btnNewButton);
 		
 		frame.addKeyListener(this);
@@ -99,6 +102,31 @@ public class Paint2 extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println(e.getKeyCode());
+		switch(e.getKeyCode())
+		{
+		case 87:
+			//w arriba
+			y-=10;
+			break;
+			
+		case 83:
+			//s abajo
+			y+=10;
+			
+			break;
+		case 68:
+			//d derecha
+			x+=10;
+			break;
+		case 65:
+			x-=10;
+			//a izquierda
+			break;
+			
+		
+		}
+		panel.repaint();
+		
 		
 	
 	}
