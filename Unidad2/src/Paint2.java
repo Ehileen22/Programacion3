@@ -22,6 +22,19 @@ public class Paint2 extends JFrame implements KeyListener {
 	private JPanel panel_1;
 	private JPanel panel ;
 	private int x=250, y=180;
+	private Player jp= new Player(x, y, 25, 25, "#951B1B");
+	private Player obstaculo=new Player(100,100,50, 150,"#82CAC5");
+	private boolean movArriba=true;
+	private boolean movAbajo=true;
+	private boolean movDerecha=true;
+	private boolean movIzquierda=true;
+	//fill(jp,getX(), asi con todos)
+	//jp.setY(jp.getY()-10);
+	//lo mismo por obstaculo
+	//al final son 4 ifs
+	//el decode, no olvidar
+	//hablando del video x+100 pq es el tamaño del cuadradito
+	
 
 	/**
 	 * Launch the application.
@@ -55,8 +68,12 @@ public class Paint2 extends JFrame implements KeyListener {
 			{
 				super.paintComponent(create);
 				Graphics2D g2d= (Graphics2D)create;	
-				g2d.setColor(new Color(149,27,27));
-				g2d.fillRect(x,y,80,80);
+				g2d.setColor(Color.decode(jp.getColor()));
+				g2d.fillRect(jp.getX(),jp.getY(),jp.getW(),jp.getH());
+				
+				g2d.setColor(Color.decode(obstaculo.getColor()));
+				g2d.fillRect(obstaculo.getX(),obstaculo.getY(),obstaculo.getW(),obstaculo.getH());
+				
 			}
 		};
 		
@@ -102,29 +119,77 @@ public class Paint2 extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println(e.getKeyCode());
+		int iniX=jp.getX();
+		int iniY=jp.getY();
 		switch(e.getKeyCode())
 		{
 		case 87:
 			//w arriba
-			y-=10;
+			//y+=10;
+			if(movArriba)
+			{
+				jp.setY(jp.getY()-10);
+			}
+			
 			break;
 			
 		case 83:
 			//s abajo
-			y+=10;
+			if(movAbajo)
+			{
+		
+				jp.setY(jp.getY()+10);
+			}
+			//y+=10;
 			
 			break;
 		case 68:
 			//d derecha
-			x+=10;
+			if(movDerecha)
+			{
+				jp.setX(jp.getX()+10);
+			}
+			//x+=10;
 			break;
 		case 65:
-			x-=10;
+			if(movIzquierda) {
+				jp.setX(jp.getX()-10);
+			}
+			//x-=10;
 			//a izquierda
 			break;
 			
 		
 		}
+		if(colision(jp))
+		{
+			jp.setX(iniX);
+			jp.setY(iniY);
+			if(e.getKeyCode()==87)
+			{
+				movArriba=false;
+			}else if(e.getKeyCode()==83)
+			{
+				movAbajo=false;
+			}else if(e.getKeyCode()==68)
+			{
+				movDerecha=false;
+			}else if(e.getKeyCode()==65) 
+			{
+				
+				movIzquierda=false;
+			}
+		}
+		else
+		{
+			movArriba=true;
+			movAbajo=true;
+			movDerecha=true;
+			movIzquierda=true;
+		}
+		//System.out.println(jp.colision(obstaculo));
+		//cuando lo quiera tocar
+		//si se suma, pues se resta 
 		panel.repaint();
 		
 		
@@ -141,5 +206,24 @@ public class Paint2 extends JFrame implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public boolean colision(Player p)
+	{
+		
+		//if (this.c+this.w>p.x+p.y) o sin lo otro
+		if(jp.getX()<(obstaculo.getX()+obstaculo.getW())&&(jp.getX()+jp.getW())>obstaculo.getX()+5&&jp.getY()<(obstaculo.getY()+obstaculo.getH())&&(jp.getY()+jp.getH())>obstaculo.getY()+5)
+		{
+			System.out.println("Colision");
+			
+			
+			return true;
+			
+		}
+		else	
+		{
+			return false;
+		}
+			
 	}
 }
