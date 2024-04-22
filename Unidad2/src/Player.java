@@ -55,5 +55,21 @@ public class Player {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	public boolean colision(Player p)
+	{
+		
+		//if (this.c+this.w>p.x+p.y) o sin lo otro
+		if(this.getX()<(p.getX()+p.getW())&&(this.getX()+this.getW())>p.getX()&&this.getY()<(p.getY()+p.getH())&&(this.getY()+this.getH())>p.getY())
+		{
+			
+			return true;
+			
+		}
+		else	
+		{
+			return false;
+		}
+			
+	}
 
 }
