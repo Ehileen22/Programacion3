@@ -1138,11 +1138,32 @@ public class Ventana extends JFrame implements MouseListener,KeyListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		Random rand= new Random();
-		float r=rand.nextFloat();
-		float g=rand.nextFloat();
-		float b=rand.nextFloat();
-		btnPanel.setBackground(new Color(r,g,b));
+		//Podemos meter la linea que nos esta tronando, o podemos meter todo un bloque de codigo
+		try {
+			int[]myNumbers= {1,2,3};
+			System.out.println(myNumbers[10]);
+			Random rand= new Random();
+			float r=rand.nextFloat();
+			float g=rand.nextFloat();
+			float b=rand.nextFloat();
+			if(btnPanel!=null)
+			{
+				btnPanel.setBackground(new Color(r,g,b));
+			}
+			
+		}catch(ArrayIndexOutOfBoundsException er)
+		{
+			System.out.println("Superó el limite de elementos");
+		}
+		catch(Exception ep)
+		{
+			System.out.println("Hay un error en mouseEntered");
+			System.out.println(ep.toString());
+		}finally {
+			
+			System.out.println("Bye");
+		}
+		
 		//muestra todos
 	
 	}

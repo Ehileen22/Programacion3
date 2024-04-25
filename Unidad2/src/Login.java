@@ -2,7 +2,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +26,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.FileReader;
+import java.io.IOException;
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -322,9 +330,8 @@ public class Login extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,"No puede ingresar!!!", null, JOptionPane.WARNING_MESSAGE);
-					
-								
+				//JOptionPane.showMessageDialog(null,"No puede ingresar!!!", null, JOptionPane.WARNING_MESSAGE);
+				readJsonFile();
 			}
 			
 			
@@ -375,6 +382,32 @@ public class Login extends JFrame {
 		frame.repaint();
 		frame.revalidate();
 	}
+	private void readJsonFile() 
+	{
+        try {
+            String filePath="src/documento.json";
+            String jsonContent=new String(Files.readAllBytes(Paths.get(filePath)));
+            ObjectMapper mapper=new ObjectMapper();
+            JsonNode root=mapper.readTree(jsonContent);
+            String firstName= root.get("firstName").asText();
+            System.out.println("El nombre del usuario es: " + firstName);
+            
+            String lastName= root.get("lastName").asText();
+            System.out.println("El apellido del usuario es: " + lastName);
+            
+            String userName= root.get("username").asText();
+            System.out.println("Su nombre de usuario es: " + userName);
+            
+            String psw= root.get("password").asText();
+            System.out.println("La contraseña del usuario es: " + psw);
+            
+            System.out.println("\n\nInformación completa: "+root.toString());
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("--No se encontro el archivo--");
+        }
+    }
 	private void registro(JFrame frame)
 	{
 		//frame.revalidate();
