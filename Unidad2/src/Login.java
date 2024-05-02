@@ -27,6 +27,7 @@ import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -38,6 +39,8 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	public JFrame frame;
 	private JTextField textField;
+	private String filePath="src/documento.json";
+	private  ObjectMapper mapper=new ObjectMapper();
 
 	/**
 	 * Launch the application.
@@ -331,7 +334,103 @@ public class Login extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//JOptionPane.showMessageDialog(null,"No puede ingresar!!!", null, JOptionPane.WARNING_MESSAGE);
-				readJsonFile();
+				String passw = new String(pwdResponse.getPassword());
+				String nom=userResponse.getText();
+				String psw = null;
+				String userName=null;
+				try {
+		            
+		            String jsonContent=new String(Files.readAllBytes(Paths.get(filePath)));
+		          
+		            JsonNode root=mapper.readTree(jsonContent);
+		            userName= root.get("username").asText();
+		            //System.out.println("Su nombre de usuario es: " + userName);
+		            psw= root.get("password").asText();
+		            //System.out.println("La contraseña del usuario es: " + psw);
+	            
+		        } catch (IOException e1) {
+		            e1.printStackTrace();
+		            System.out.println("--No se encontro el archivo--");
+		        }
+				
+				if(nom.equals(userName)&&passw.equals(psw))
+				{
+					pwdResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+					userResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+					JOptionPane.showMessageDialog(null,"Bienvenido", null, JOptionPane.WARNING_MESSAGE);
+					frame.removeAll();	
+					frame.remove(account);
+					
+					getContentPane().removeAll();
+					alta(frame);
+					
+					frame.repaint();
+					frame.revalidate();
+					//registro(frame);
+				}
+				else
+				{
+					if(!nom.equals(userName)&&!passw.equals(psw))
+					{
+						pwdResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+						userResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+						JOptionPane.showMessageDialog(null,"Su usuario y contraseña son incorrectas, por favor ingrese sus datos de nuevo", null, JOptionPane.WARNING_MESSAGE);
+						
+					}
+					else
+					{
+						if(nom.equals(userName)&&!passw.equals(psw))
+						{
+							pwdResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+							userResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+							JOptionPane.showMessageDialog(null,"Su contraseña es incorrecta, por favor ingrese su contraseña de nuevo", null, JOptionPane.WARNING_MESSAGE);
+							
+						}
+//						else
+//						{
+//							if(!nom.equals(userName)&&passw.equals(psw))
+//							{
+//								pwdResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+//								userResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+//								JOptionPane.showMessageDialog(null,"Su usuario y contraseña son incorrectas, por favor ingrese sus datos de nuevo", null, JOptionPane.WARNING_MESSAGE);
+//							}
+//							
+//						}
+						
+					}
+				}
+//				if(passw.equals(psw))
+//				{
+//					pwdResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+//					
+//				}
+//				else
+//				{
+//					if(passw.equals(""))
+//					{
+//						pwdResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+//					}
+//					else
+//					{
+//						if(!passw.equals(psw))
+//						{
+//							
+//						}
+//					}
+//				}
+//				
+//				if(nom.equals(userName))
+//				{
+//					userResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+//					
+//				}
+//				else
+//				{
+//					userResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+//				}
+//				
+//				
+//				readJsonFile();
 			}
 			
 			
@@ -385,9 +484,9 @@ public class Login extends JFrame {
 	private void readJsonFile() 
 	{
         try {
-            String filePath="src/documento.json";
+            
             String jsonContent=new String(Files.readAllBytes(Paths.get(filePath)));
-            ObjectMapper mapper=new ObjectMapper();
+          
             JsonNode root=mapper.readTree(jsonContent);
             String firstName= root.get("firstName").asText();
             System.out.println("El nombre del usuario es: " + firstName);
