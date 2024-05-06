@@ -266,6 +266,7 @@ public class Login extends JFrame {
 		this.setResizable(false);
 		this.setTitle("User Login");
 		
+		
 		JPanel account= new JPanel();
 		account.setSize(this.getWidth(),this.getHeight());
 		account.setLocation(0,0);

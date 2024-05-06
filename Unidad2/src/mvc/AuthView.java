@@ -96,12 +96,16 @@ public class AuthView {
 				//System.out.println(pwdResponse.getText());
 				if(modelo.login(userResponse.getText(),passw))
 				{
-					System.out.println("Bienvenido");
+					pwdResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+					userResponse.setBorder(BorderFactory.createLineBorder(Color.green, 2));
+					JOptionPane.showMessageDialog(null,"Bienvenido", null, JOptionPane.WARNING_MESSAGE);
 					
 				}
 				else	
 				{
-					System.out.println("verificar");
+					pwdResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+					userResponse.setBorder(BorderFactory.createLineBorder(Color.red, 2));
+					JOptionPane.showMessageDialog(null,"Su usuario y/o contraseña están incorrectos, ingrese sus datos nuevamente", null, JOptionPane.WARNING_MESSAGE);
 				}
 			}
 			
